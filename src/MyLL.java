@@ -1,22 +1,22 @@
-public class Practice {
-    public static void main(String[] args) {
-        System.out.println("~linked lists practice~");
-        
-        Node head = new Node('g', null);
-        Node ryan = new Node('s', null);
-        head.next = ryan;
-        ryan.next = new Node('t', null);
-        ryan.next.next = new Node('x', null);
+public class MyLL {
+  private class Node {
+    public char value;
+    public Node next;
 
-        System.out.println(contains(head, 'x'));
-
-        System.out.println(contains(head, 'e'));
-
-        remove(head, 't');
+    public Node(char value, Node next){
+      this.value = value;
+      this.next = next;
     }
+}
 
-    public static void printList(Node start){
-        Node current = start;
+  private Node head;
+
+  public MyLL() {
+    head = null;
+  }
+
+  public void printList(){
+        Node current = head;
 
         while (current != null) {
             System.out.println(current.value);
@@ -24,8 +24,8 @@ public class Practice {
         }
     }
 
-    public static boolean contains(Node start, char toFind) {
-        Node current = start;
+    public boolean contains(char toFind) {
+        Node current = head;
 
         while (current != null) {
             if (current.value == toFind) {
@@ -39,7 +39,14 @@ public class Practice {
     }
 
     // remove the first node that has toRemove
-    public static char remove(Node head, char toRemove) {
+    public char remove(char toRemove) {
+        if (head == null) {
+          return '\0';
+        }
+
+        if (head.value == toRemove) {
+          head = head.next;
+        }
         Node current = head;
 
         while (current.next != null) {
@@ -54,4 +61,5 @@ public class Practice {
 
         return '\0';
     }
+
 }
